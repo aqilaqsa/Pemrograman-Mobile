@@ -15,4 +15,4 @@
 
 ## Tampilan Progress App Project
 ### Landing Page - Aniflix
-![alt text](image.png)
+![alt text](project/aniflix_app/image.png)
