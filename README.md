@@ -12,3 +12,7 @@
 
 ### Display Image
 ![alt text](handson2/app_from_scratch/assets/images/image-trial/display-image.jpg) 
+
+## Tampilan Progress App Project
+### Landing Page - Aniflix
+![alt text](image.png)
