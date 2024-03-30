@@ -20,7 +20,7 @@
 ### Landing Page - Aniflix 30 Maret 2024
 ![alt text](project/aniflix_app/assets/images/homepage.png)
 
-### Text Button
+### Text Button (ANIFLIX -> merubah image background)
 ![alt text](project/aniflix_app/assets/images/textbutton.png)
 
 ### Genres as Stateful Widget
