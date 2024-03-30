@@ -3,6 +3,7 @@ import 'navigation_bar.dart';
 import 'highlight_content.dart';
 import 'anime_thumbnail.dart';
 import 'genres_container.dart';
+import 'anime_detail.dart';
 
 void main() {
   runApp(const AniflixApp());
@@ -20,33 +21,120 @@ class AniflixApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AniflixHomePage(),
+      home: const AniflixHomePage(),
     );
   }
 }
 
-class AniflixHomePage extends StatelessWidget {
-  // Updated dummy data to simulate anime titles along with thumbnails
-  final List<Map<String, String>> _animeThumbnails = [
-    {'imagePath': 'assets/images/anime1.jpg', 'title': 'Solo Leveling'},
-    {'imagePath': 'assets/images/anime2.jpg', 'title': 'Hunter X Hunter (2011 Ver.)'},
-    {'imagePath': 'assets/images/anime3.jpg', 'title': 'Mashle'},
-    {'imagePath': 'assets/images/anime4.jpg', 'title': 'One Piece'},
-    {'imagePath': 'assets/images/anime5.jpg', 'title': 'Naruto'},
+class AniflixHomePage extends StatefulWidget {
+  const AniflixHomePage({super.key});
+
+  @override
+  State<AniflixHomePage> createState() => _AniflixHomePageState();
+}
+
+class _AniflixHomePageState extends State<AniflixHomePage> {
+  String selectedGenre = "";
+  String _highlightImagePath = 'assets/images/highlight.jpg';
+
+  final List<Map<String, dynamic>> animeDetails = [
+    {
+      'imagePath': 'assets/images/anime1.jpg',
+      'title': 'Solo Leveling',
+      'genres': ['Action', 'Drama', 'Fantasy', 'OP'],
+      'description':
+          'Solo Leveling (俺だけレベルアップな件, Ore dake Reberu Appu na Ken) is the anime adaptation of Chu-Gong Solo Leveling webnovel and the accompanying webtoon series. The series, brought to life by A-1 Pictures, made its debut in 2024.',
+      'episodes': List.generate(12, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime2.jpg',
+      'title': 'Hunter X Hunter (2011 Ver.)',
+      'genres': ['Action', 'Fantasy'],
+      'description':
+          'Hunter × Hunter (ハンター×ハンター, Hantā Hantā), pronounced "Hunter Hunter", is a Japanese manga series written and illustrated by Yoshihiro Togashi.',
+      'episodes': List.generate(148, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime3.jpg',
+      'title': 'Mashle S2',
+      'genres': ['Comedy', 'Action', 'OP', 'Fantasy'],
+      'description':
+          'Mashle (マッシュル-MASHLE-) is a Japanese anime series based on the Mashle manga by Hajime Komoto. The anime premiered in April 2023. The second season is titled Mashle: Divine Visionary Candidate Exam Arc',
+      'episodes': List.generate(12, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime4.jpg',
+      'title': 'One Piece',
+      'genres': ['Adventure', 'Action'],
+      'description':
+          'One Piece (ワンピース, Wan Pīsu?) is an animated series based on the manga produced by Toei Animation and broadcasted by Fuji Television. Premiering in October 1999, it has currently aired over 1000 episodes and been exported to more than thirty nations worldwide.',
+      'episodes': List.generate(10, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime5.jpg',
+      'title': 'Naruto',
+      'genres': ['Action', 'Adventure', 'Comedy', 'Fantasy'],
+      'description':
+          'Naruto is a Japanese manga series written and illustrated by Masashi Kishimoto. It tells the story of Naruto Uzumaki, a young ninja who seeks recognition from his peers and dreams of becoming the Hokage, the leader of his village. ',
+      'episodes': List.generate(12, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime6.jpg',
+      'title': 'Angel Beats!',
+      'genres': ['Drama', 'Romance', 'Fantasy'],
+      'description':
+          'Angel Beats! is a 13-episode Japanese anime television series produced by P.A. Works and Aniplex directed by Seiji Kishi. The story was conceived by Jun Maeda, with original character design by Na-Ga; both Maeda and Na-Ga are from the visual novel brand Key, who produced such titles as Kanon, Air, and Clannad.',
+      'episodes': List.generate(13, (index) => 'Episode ${index + 1}'),
+    },
+    {
+      'imagePath': 'assets/images/anime7.jpg',
+      'title': 'Tokyo Ghoul',
+      'genres': ['Thriller', 'Horror', 'Drama'],
+      'description':
+          'A 12-episode anime television series adaptation produced by Pierrot, aired on Tokyo MX from July to September 2014. Tokyo Ghoul (Japanese: 東京喰種トーキョーグール, Hepburn: Tōkyō Gūru) is a Japanese dark fantasy manga series written and illustrated by Sui Ishida.',
+      'episodes': List.generate(12, (index) => 'Episode ${index + 1}'),
+    },
   ];
 
-  final List<String> _genres = ['Action', 'Adventure', 'Comedy', 'Drama'];
+  final List<String> _genres = [
+    'Action',
+    'OP',
+    'Thriller',
+    'Fantasy',
+    'Comedy',
+    'Drama',
+    'Romance',
+    'Horror'
+  ];
 
-  AniflixHomePage({super.key});
+  void _toggleHighlightImage() {
+    setState(() {
+      _highlightImagePath = _highlightImagePath == 'assets/images/highlight.jpg'
+          ? 'assets/images/light.jpg'
+          : 'assets/images/highlight.jpg';
+    });
+  }
+
+  void _handleGenreSelected(String genre) {
+    setState(() {
+      selectedGenre = genre;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final filteredAnimeDetails = selectedGenre.isEmpty
+        ? animeDetails
+        : animeDetails
+            .where((anime) => (anime['genres'] as List).contains(selectedGenre))
+            .toList();
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: CustomNavigationBar(
           onSearch: (query) {
-            // Future implementation of search functionality
+            // belom jadi masi gimik
           },
         ),
       ),
@@ -54,30 +142,45 @@ class AniflixHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const HighlightContent(imagePath: 'assets/images/highlight.jpg', title: 'ANIFLIX'),
+            HighlightContent(
+              imagePath: _highlightImagePath,
+              title: 'ANIFLIX',
+              onPress: _toggleHighlightImage,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GenresContainer(genres: _genres),
+              child: GenresContainer(
+                  genres: _genres, onGenreSelected: _handleGenreSelected),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(), // to disable GridView's scrolling inside a SingleChildScrollView
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Number of columns
-                  crossAxisSpacing: 8.0, // Horizontal space between items
-                  mainAxisSpacing: 8.0, // Vertical space between items
-                  childAspectRatio: (100 / 150), // Aspect ratio of each item
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                  childAspectRatio: (100 / 150),
                 ),
-                itemCount: _animeThumbnails.length,
+                itemCount: filteredAnimeDetails.length,
                 itemBuilder: (context, index) {
-                  var anime = _animeThumbnails[index];
+                  final anime = filteredAnimeDetails[index];
                   return AnimeThumbnail(
-                    imagePath: anime['imagePath']!,
-                    title: anime['title']!,
+                    imagePath: anime['imagePath'],
+                    title: anime['title'],
                     onClick: () {
-                      // Implement onClick functionality, e.g., navigate to a detail page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AnimeDetailPage(
+                            title: anime['title'],
+                            imagePath: anime['imagePath'],
+                            description: anime['description'],
+                            episodes: anime['episodes'],
+                          ),
+                        ),
+                      );
                     },
                   );
                 },

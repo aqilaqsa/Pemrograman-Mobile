@@ -1,4 +1,3 @@
-// lib/widgets/anime_thumbnail.dart
 import 'package:flutter/material.dart';
 
 class AnimeThumbnail extends StatelessWidget {
@@ -6,7 +5,12 @@ class AnimeThumbnail extends StatelessWidget {
   final String title;
   final VoidCallback onClick;
 
-  const AnimeThumbnail({super.key, required this.imagePath, required this.title, required this.onClick});
+  const AnimeThumbnail({
+    super.key,
+    required this.imagePath,
+    required this.title,
+    required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,16 @@
-// lib/widgets/highlight_content.dart
 import 'package:flutter/material.dart';
 
 class HighlightContent extends StatelessWidget {
   final String imagePath;
   final String title;
+  final VoidCallback onPress;
 
-  const HighlightContent({super.key, required this.imagePath, required this.title});
+  const HighlightContent({
+    super.key,
+    required this.imagePath,
+    required this.title,
+    required this.onPress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +24,17 @@ class HighlightContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-          color: Color.fromARGB(255, 254, 254, 255), 
-          fontSize: 40,
-          fontFamily: 'BebasNeue',
-          fontWeight: FontWeight.bold)
+        child: TextButton(
+          onPressed: onPress,
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white, // Adjust color based on your theme
+              fontSize: 40,
+              fontFamily: 'BebasNeue',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );

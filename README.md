@@ -16,3 +16,16 @@
 ## Tampilan Progress App Project
 ### Landing Page - Aniflix
 ![alt text](project/aniflix_app/image.png)
+
+### Landing Page - Aniflix 30 Maret 2024
+![alt text](project/aniflix_app/assets/images/homepage.png)
+
+### Text Button
+![alt text](project/aniflix_app/assets/images/textbutton.png)
+
+### Genres as Stateful Widget
+![alt text](project/aniflix_app/assets/images/stateful-widget1.png)
+
+![alt text](project/aniflix_app/assets/images/stateful-widget2.png)
+
+

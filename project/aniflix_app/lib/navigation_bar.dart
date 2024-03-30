@@ -1,10 +1,11 @@
-// lib/widgets/navigation_bar.dart
 import 'package:flutter/material.dart';
+
+// belom fungsional, baru untuk menyelesaikan ketentuan minimal 3 widget
 
 class CustomNavigationBar extends StatelessWidget {
   final Function(String)? onSearch;
 
-  const CustomNavigationBar({Key? key, this.onSearch}) : super(key: key);
+  const CustomNavigationBar({super.key, this.onSearch});
 
   @override
   Widget build(BuildContext context) {
