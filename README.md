@@ -24,8 +24,8 @@
 ![alt text](project/aniflix_app/assets/images/textbutton.png)
 
 ### Genres as Stateful Widget
-![alt text](project/aniflix_app/assets/images/stateful-widget1.png)
+![alt text](project/aniflix_app/assets/images/stateful_widget1.png)
 
-![alt text](project/aniflix_app/assets/images/stateful-widget2.png)
+![alt text](project/aniflix_app/assets/images/stateful_widget2.png)
 
 
