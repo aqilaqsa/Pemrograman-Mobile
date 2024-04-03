@@ -15,7 +15,7 @@
 
 ## Tampilan Progress App Project
 ### Landing Page - Aniflix
-<img src="project/aniflix_app/image.png" alt="landing page" style="width: 300px;">
+<img src="project/aniflix_app/image.png" alt="landing page" style="width: 800px;">
 
 ### Landing Page - Aniflix 30 Maret 2024
 <img src="project/aniflix_app/assets/images/homepage.png" alt="homepage" style="width: 300px;">
