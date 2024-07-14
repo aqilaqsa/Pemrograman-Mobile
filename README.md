@@ -1,5 +1,11 @@
 # Pemrograman-Mobile
 
+## Keterangan
+- handson/first_app -> handson 1
+- handson2/app_from_scratch -> handson 2
+- project2/project2 -> modul 4 quiz app
+- project/aniflix_app -> final project 
+
 ## Tampilan Hands-on first app text style, 21 Maret 2024
 <img src="handson/first_app/images/tampilan-handson01.jpg" alt="hands-on1" style="width: 800px;">
 

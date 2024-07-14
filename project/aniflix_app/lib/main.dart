@@ -4,6 +4,7 @@ import 'highlight_content.dart';
 import 'anime_thumbnail.dart';
 import 'genres_container.dart';
 import 'anime_detail.dart';
+import 'anime_req.dart';
 
 void main() {
   runApp(const AniflixApp());
