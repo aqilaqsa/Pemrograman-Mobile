@@ -1,7 +1,7 @@
 # aniflix_app
 
-![alt text](assets/images/homepage.png)
-![alt text](assets/images/)
+![Homepage Screenshot](assets/images/homepage.png){ width=50% }
+![Detail Screenshot](assets/images/detail.jpg){ width=50% }
 
 ## Kriteria final project selain Originality & Demo
 1. Widgets (Use various Widget - Done)
