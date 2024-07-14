@@ -1,6 +1,6 @@
 # aniflix_app
 
-![Homepage Screenshot](assets/images/homepage.png){ width=50% }
+![Homepage Screenshot](assets/images/landing-page.png){ width=50% }
 ![Detail Screenshot](assets/images/detail.jpg){ width=50% }
 
 ## Kriteria final project selain Originality & Demo
