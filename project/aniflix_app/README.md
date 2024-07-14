@@ -1,5 +1,7 @@
 # aniflix_app
 
+![alt text](image.png)
+
 ## Kriteria final project selain Originality & Demo
 1. Widgets (Use various Widget - Done)
 -> navbar, header, genre, thumbnail, dan detail.
