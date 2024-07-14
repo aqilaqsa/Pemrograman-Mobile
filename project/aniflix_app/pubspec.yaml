@@ -73,6 +73,8 @@ flutter:
     - assets/images/stateful_widget1.png
     - assets/images/stateful_widget2.png
     - assets/images/textbutton.png
+    - assets/images/landing-page.jpg
+    - assets/images/detail.jpg
 
   fonts:
     - family: BebasNeue

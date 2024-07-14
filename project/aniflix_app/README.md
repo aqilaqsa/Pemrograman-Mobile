@@ -1,6 +1,7 @@
 # aniflix_app
 
-![alt text](image.png)
+![alt text](assets/images/homepage.png)
+![alt text](assets/images/)
 
 ## Kriteria final project selain Originality & Demo
 1. Widgets (Use various Widget - Done)
