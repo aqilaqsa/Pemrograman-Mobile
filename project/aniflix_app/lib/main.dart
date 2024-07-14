@@ -36,6 +36,8 @@ class AniflixHomePage extends StatefulWidget {
 class _AniflixHomePageState extends State<AniflixHomePage> {
   String selectedGenre = "";
   String _highlightImagePath = 'assets/images/highlight.jpg';
+  List<Map<String, dynamic>> searchResults = [];
+  bool isSearching = false;
 
   final List<Map<String, dynamic>> animeDetails = [
     {
@@ -121,21 +123,35 @@ class _AniflixHomePageState extends State<AniflixHomePage> {
     });
   }
 
+  void _searchAnime(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        searchResults = [];
+        isSearching = false;
+      } else {
+        searchResults = animeDetails.where((anime) {
+          return anime['title'].toLowerCase().contains(query.toLowerCase());
+        }).toList();
+        isSearching = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final filteredAnimeDetails = selectedGenre.isEmpty
-        ? animeDetails
-        : animeDetails
-            .where((anime) => (anime['genres'] as List).contains(selectedGenre))
-            .toList();
+    List<Map<String, dynamic>> displayAnime = isSearching
+        ? searchResults
+        : (selectedGenre.isEmpty
+            ? animeDetails
+            : animeDetails
+                .where((anime) => anime['genres'].contains(selectedGenre))
+                .toList());
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: CustomNavigationBar(
-          onSearch: (query) {
-            // belom jadi masi gimik
-          },
+          onSearch: _searchAnime,
         ),
       ),
       body: SingleChildScrollView(
@@ -154,37 +170,42 @@ class _AniflixHomePageState extends State<AniflixHomePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
-                  childAspectRatio: (100 / 150),
-                ),
-                itemCount: filteredAnimeDetails.length,
-                itemBuilder: (context, index) {
-                  final anime = filteredAnimeDetails[index];
-                  return AnimeThumbnail(
-                    imagePath: anime['imagePath'],
-                    title: anime['title'],
-                    onClick: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnimeDetailPage(
-                            title: anime['title'],
-                            imagePath: anime['imagePath'],
-                            description: anime['description'],
-                            episodes: anime['episodes'],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              child: displayAnime.isEmpty
+                  ? const Center(
+                      child: Text('No results found',
+                          style: TextStyle(color: Colors.white, fontSize: 18)))
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: (100 / 150),
+                      ),
+                      itemCount: displayAnime.length,
+                      itemBuilder: (context, index) {
+                        final anime = displayAnime[index];
+                        return AnimeThumbnail(
+                          imagePath: anime['imagePath'],
+                          title: anime['title'],
+                          onClick: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AnimeDetailPage(
+                                  title: anime['title'],
+                                  imagePath: anime['imagePath'],
+                                  description: anime['description'],
+                                  episodes: anime['episodes'],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
             ),
           ],
         ),

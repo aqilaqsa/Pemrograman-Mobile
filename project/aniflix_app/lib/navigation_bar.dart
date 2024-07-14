@@ -1,29 +1,61 @@
 import 'package:flutter/material.dart';
 
-// belom fungsional, baru untuk menyelesaikan ketentuan minimal 3 widget
+class CustomNavigationBar extends StatefulWidget {
+  final Function(String) onSearch;
 
-class CustomNavigationBar extends StatelessWidget {
-  final Function(String)? onSearch;
+  const CustomNavigationBar({super.key, required this.onSearch});
 
-  const CustomNavigationBar({super.key, this.onSearch});
+  @override
+  State<CustomNavigationBar> createState() => _CustomNavigationBarState();
+}
+
+class _CustomNavigationBarState extends State<CustomNavigationBar> {
+  final TextEditingController _controller = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _handleSearch() {
+    if (_controller.text.trim().isEmpty) {
+      //input empty!!
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter a search term'),
+          duration: Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+        )
+      );
+    } else {
+      widget.onSearch(_controller.text.trim());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black,
       title: TextField(
-        onSubmitted: onSearch,
+        controller: _controller,
+        onSubmitted: (value) {
+          _handleSearch();
+        },
         style: const TextStyle(color: Colors.white),
-        decoration: const InputDecoration(
-          hintText: "Search...",
-          hintStyle: TextStyle(color: Colors.grey),
+        decoration: InputDecoration(
+          hintText: "Search anime titles...",
+          hintStyle: const TextStyle(color: Colors.grey),
           border: InputBorder.none,
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: () {
+              _controller.clear();
+              widget.onSearch('');
+            },
+          ),
         ),
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {},
+          onPressed: _handleSearch,
+          color: _controller.text.isEmpty ? Colors.grey : Colors.white,
         ),
       ],
     );

@@ -29,7 +29,7 @@ class HighlightContent extends StatelessWidget {
           child: Text(
             title,
             style: const TextStyle(
-              color: Colors.white, // Adjust color based on your theme
+              color: Colors.white,
               fontSize: 40,
               fontFamily: 'BebasNeue',
               fontWeight: FontWeight.bold,
